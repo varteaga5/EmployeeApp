@@ -5,13 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 using API.Entities;
+using Microsoft.AspNetCore.Authorization;
 // added comment to commit
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class UsersController : ControllerBase
+    public class UsersController : BaseAPIController
     {
         private readonly DataContext _context;
         public UsersController(DataContext context)
@@ -20,12 +19,14 @@ namespace API.Controllers
         }    
         
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<List<AppUser>>> GetUsers()
         {
             return await _context.Users.ToListAsync();
 
         }
         
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<AppUser>> GetUser(int id)
         {
