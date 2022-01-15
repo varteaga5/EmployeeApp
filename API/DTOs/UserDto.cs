@@ -1,4 +1,5 @@
 namespace API.DTOs
+// Data Transfer Object
 {
     public class UserDto
     {
