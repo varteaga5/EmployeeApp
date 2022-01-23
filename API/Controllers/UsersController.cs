@@ -1,8 +1,4 @@
-using API.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-
-using API.Entities;
 using Microsoft.AspNetCore.Authorization;
 using API.Interfaces;
 using API.DTOs;
@@ -30,7 +26,6 @@ namespace API.Controllers
 
             return Ok(users);
         }
-
 
         [HttpGet("{username}")]
         public async Task<ActionResult<MemberDto>> GetUser(string username)
