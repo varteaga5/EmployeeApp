@@ -8,6 +8,7 @@ using API.Extensions;
 using API.Entities;
 using System.Threading.Tasks;
 using System.Net;
+using API.Helpers;
 // added comment to commit
 
 namespace API.Controllers
@@ -27,9 +28,11 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<MemberDto>>> GetUsers()
+        public async Task<ActionResult<List<MemberDto>>> GetUsers([FromQuery]UserParams userParams)
         {
-            var users = await _userRepository.GetMembersAsync();
+            var users = await _userRepository.GetMembersAsync(userParams);
+
+            Response.AddPaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
 
             return Ok(users);
         }
