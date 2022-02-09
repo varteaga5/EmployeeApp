@@ -18,7 +18,6 @@ namespace API.Controllers
     { 
         private readonly IMapper _mapper;
         private readonly IPhotoService _photoService;
-
         private readonly IUserRepository _userRepository;
         public UsersController(IUserRepository userRepository, IMapper mapper, IPhotoService photoService)
         {
@@ -27,6 +26,7 @@ namespace API.Controllers
             _userRepository = userRepository;
         }
 
+        
         [HttpGet]
         public async Task<ActionResult<List<MemberDto>>> GetUsers([FromQuery]UserParams userParams)
         {
@@ -43,6 +43,7 @@ namespace API.Controllers
             return Ok(users);
         }
 
+        
         [HttpGet("{username}", Name = "GetUser")]
         public async Task<ActionResult<MemberDto>> GetUser(string username)
         {
@@ -64,7 +65,7 @@ namespace API.Controllers
             return BadRequest("Failed to update user");
         }
 
-                [HttpPost("add-photo")]
+        [HttpPost("add-photo")]
         public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file)
         {
             var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
