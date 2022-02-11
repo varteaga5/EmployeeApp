@@ -3,11 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using API.Interfaces;
 using API.DTOs;
 using AutoMapper;
-using System.Security.Claims;
 using API.Extensions;
 using API.Entities;
-using System.Threading.Tasks;
-using System.Net;
 using API.Helpers;
 // added comment to commit
 
@@ -91,7 +88,6 @@ namespace API.Controllers
             {
                 // this will return 201 response
                 return CreatedAtRoute("GetUser",new {username = user.UserName} ,_mapper.Map<PhotoDto>(photo));
-
             }
 
             return BadRequest("Problem adding photo");
