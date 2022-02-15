@@ -29,7 +29,7 @@ namespace API.Extensions
                   IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"])), ValidateIssuer = false, ValidateAudience = false,
                 };
             });
-
+ 
             services.AddAuthorization(opt => 
             {
                 opt.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
