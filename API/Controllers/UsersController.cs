@@ -22,7 +22,6 @@ namespace API.Controllers
             _unitOfWork = unitOfWork;
             _photoService = photoService;
             _mapper = mapper;
-
         }
 
 
