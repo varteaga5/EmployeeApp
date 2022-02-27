@@ -24,6 +24,8 @@ namespace API.Data
         
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+            
             base.OnModelCreating(builder);
             
             builder.Entity<AppUser>()
